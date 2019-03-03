@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{margin: 0;padding:0;}
+        .wrap{
+            width: 300px;
+            margin:auto;
+        }
+        textarea{
+            width: 300px;
+            height: 200px;
+        }
+        input{
+            float: right;
+        }
+        .content{
+            width: 600px;
+            margin:auto;
+        }
+        .content p{
+            border-bottom: 1px solid #ccc;
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class ="wrap">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <input type="button" value="发送">
+    </div>
+    <div class="content"></div>
+    <script>
+        let oButton = document.getElementsByTagName("input")[0],
+            
+            oContent = document.getElementsByClassName("content")[0];
+        oButton.onclick = function(){
+            let oTextarea = document.getElementsByTagName("textarea")[0];
+           
+            oContent.innerHTML += "<p>"+oTextarea.value+"</p>"
+        }
+    </script>
+</body>
+</html>

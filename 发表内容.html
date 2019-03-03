@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,p,hr{margin:0;padding: 0;}
+        p{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #wrap{
+            width: 400px;
+            margin:50px auto 0;
+        }
+        #wrap .w-top{
+            
+            width: 100%;
+            height: 60px;
+            background-color:pink;
+        }
+        #wrap .w-top div{
+            float: left;
+        }
+        #wrap .w-top .left{
+            width:40px;
+            height: 40px;
+            margin: 10px;
+            border-radius: 50%;
+            overflow: hidden; 
+        }
+        #wrap .w-top .left img{
+            display:none;
+            
+        }
+        #wrap .w-top .left img.show{
+            display:block;
+        }
+        #wrap .w-top .center{
+            display: none;
+            width:280px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #wrap .w-top .right{
+            float: right;
+            width:60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #wrap .w-top .right input{
+            width:30px;
+            height: 30px;
+            font-size: 24px;
+            border-radius:50%;
+        }
+        #wrap .w-bottom img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"> 
+        <div class="w-top">
+            <div class="left">
+                <img src="image/图片的淡入淡出图片/QQ3.jpg" alt="" width="40px" height="40px">
+                <img src="image/图片的淡入淡出图片/QQ4.jpg" alt="" width="40px" height="40px" class="show">
+                
+            </div>
+            <div class="center">
+                <input type="text" name="" id="">
+                <input type="submit" value="发表">
+            </div>
+            <div class="right">
+                <input type="submit" value="+">
+            </div>
+        </div>
+        <div class="w-bottom">
+        </div>
+    </div>
+    <script>
+        var oSubmit = document.querySelector("#wrap .w-top .right input"),
+            oDiv = document.getElementsByClassName("center")[0],
+            oSubmit1 = document.querySelector(" #wrap .w-top .center input:nth-child(2)");
+            oText = document.querySelector(" #wrap .w-top .center input:nth-child(1)");
+            oDiv2 = document.getElementsByClassName("w-bottom")[0];
+            oImg = document.getElementsByTagName("img");
+        oSubmit.onclick = function(){
+           
+            if(this.value == "+"){
+                oDiv.style.display = "block";
+                oSubmit.value = "-";
+            }else{
+                oDiv.style.display = "none";
+                oSubmit.value = "+";
+            }
+            
+        }
+        
+        oImg[1].onclick = function(){
+            oImg[1].className = "";
+            oImg[0].className = "show";
+        }
+        oImg[0].onclick = function(){
+            oImg[0].className = "";
+            oImg[1].className = "show";
+        }
+        oSubmit1.onclick = function(){
+            if(oText.value){
+                var oImgsrc = document.getElementsByClassName("show")[0].src; 
+                oDiv2.innerHTML += "<img src = "+oImgsrc+">" + "<p>"+oText.value+"</p>"+"<hr>"+"<br>"
+            }
+            
+        }
+    </script>
+</body>
+</html>

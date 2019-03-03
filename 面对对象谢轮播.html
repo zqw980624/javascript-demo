@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{list-style: none;}
+        #wrap{
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 40px auto 0;
+            border: 10px solid black;
+
+        }
+        #wrap .pic li{
+            display: none;
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            color:white;
+            font-size: 100px;
+            line-height: 400px;
+            font-weight: 900;
+            text-align: center;
+        }
+        #wrap .tab ul{
+            position: absolute;
+            bottom: 20px;
+            width: 600px;
+            height: 40px;
+            text-align: center;
+        }
+        #wrap .tab li{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        span{
+            position: absolute;
+            display: inline-block;
+            left: 0;
+            top: 160px;
+            width: 60px;
+            height: 60px;
+            font-size: 60px;
+            line-height: 60px;
+            background-color: black;
+            text-align: center;
+            color:white;
+            
+        }
+        span:nth-of-type(1){
+            left: 540px;
+        }
+        #wrap .pic li.active{
+            display: block;
+        }
+        #wrap .tab li.black{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="pic">
+            <ul>
+                <li style="background-color: red;">一</li>
+                <li style="background-color: yellow;">二</li>
+                <li style="background-color: blue;">三</li>
+                <li style="background-color: green;">四</li>
+                <li style="background-color: pink;">五</li>
+                <li style="background-color: cyan;">六</li>
+            </ul>
+        </div>
+        <div class="tab">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+       
+        <span class="last">></span>
+        <span class="next"><</span>
+    </div>
+    <script>
+        Person.prototype = {
+            constructor : Person,
+            init : function(){
+               
+                this.bgcLi[0].className = "active";
+                this.tabLi[0].className = "black";
+                
+            },
+            tabLiEvent : function(){
+                let length = this.tabLi.length;
+                for(let i = 0; i < length; i++){
+                    that = this;
+                    this.tabLi[i].onclick = function(){
+                       that.tabLi[that.index].className = "";
+                       this.className = "black";
+                       that.bgcLi[that.index].className = "";
+                       that.bgcLi[i].className = "active";
+                       that.index = i;
+                        
+                    }
+                }
+            },
+            last : function(){
+            
+               this.lastSpan.onclick = function(){
+                   
+                  
+                   that.tabLi[that.index].className = "";
+                   that.bgcLi[that.index].className = "";
+                   that.index++;
+                   if(that.index === 6)  that.index = 0;
+                   that.tabLi[that.index].className = "black";
+                   that.bgcLi[that.index].className = "active";
+                   
+               }
+            },
+            next : function(){
+            
+            this.nextSpan.onclick = function(){
+                
+               
+                that.tabLi[that.index].className = "";
+                that.bgcLi[that.index].className = "";
+                that.index--;
+                if(that.index === -1)  that.index = 5;
+                that.tabLi[that.index].className = "black";
+                that.bgcLi[that.index].className = "active";
+                
+            }
+         }
+           
+        }
+        function Person(obj){
+            this.bgcLi = obj.bgcLi;
+            this.tabLi = obj.tabLi;
+            this.lastSpan = obj.lastSpan;
+            this.nextSpan = obj.nextSpan;
+            this.index = 0;
+            this.tabLiEvent();
+            
+            
+            this.init();
+            this.last();
+            this.next();
+        }
+        
+        let person = new Person({
+            bgcLi : document.querySelectorAll("#wrap .pic li"),
+            tabLi : document.querySelectorAll("#wrap .tab li"),
+            lastSpan : document.getElementsByClassName("last")[0],
+            nextSpan : document.getElementsByClassName("next")[0]
+        });
+    </script>
+</body>
+</html>

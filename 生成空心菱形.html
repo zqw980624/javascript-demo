@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            text-align: center;
+            letter-spacing: 36px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input type="submit" value="生成多少行">
+    <div></div>
+    <script>
+        var oDiv = document.getElementsByTagName("div")[0],
+            str ="",
+            aInput = document.getElementsByTagName("input"),
+            num = 0;
+        aInput[1].onclick = function(){
+            num = aInput[0].value;
+            var middle =Math.ceil( num/2),
+            x = 0;
+            var x=-1;
+            for(var i=0;i<num;i++){
+                if(i<middle){
+                    x++;
+                }else{
+                    x--;
+                }
+                for(var j=0;j<=x;j++){
+                    if(j==0 || j==x){
+                        str+="*";
+                    }else{
+                        str+="&nbsp;"
+                    }
+                    
+                }
+                str += "<br/>";
+            }
+            oDiv.innerHTML = str;
+        }
+        
+       
+    </script>
+</body>
+</html>

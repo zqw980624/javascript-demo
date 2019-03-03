@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li,p{margin:0;padding: 0;}
+        li{list-style: none;}
+        #banner{
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            border: 2px solid red;
+        }
+        #banner img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 600px;
+            height: 400px;
+            opacity: 0;
+        }
+        #banner img.on{
+            opacity: 1;
+        }
+        #banner ul{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        #banner ul li{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px purple;
+            transition-duration: 0.6s;
+        }
+        #banner ul li.on{
+            background-color: red;
+            
+        }
+        #banner p{
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 30px;
+            background-color: black;
+            color: purple;
+            font-size: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+        #banner p:nth-of-type(1){
+            left:0;
+        }
+        #banner p:nth-of-type(2){
+            right:0 ;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <img src="image/图片的淡入淡出图片/QQ1.png" alt="" class="on">
+        <img src="image/图片的淡入淡出图片/QQ2.jpg" alt="">
+        <img src="image/图片的淡入淡出图片/QQ3.jpg" alt="">
+        <img src="image/图片的淡入淡出图片/QQ4.jpg" alt="">
+        <img src="image/图片的淡入淡出图片/QQ5.jpg" alt="">
+        <img src="image/图片的淡入淡出图片/QQ6.jpg" alt="">
+        <ul>
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p><</p>
+        <p>></p>
+    </div>
+    <script src="move.js"></script>
+    <script>
+        var oBanner = document.getElementById("banner"),
+            aP = document.getElementsByTagName("p"),
+            aImg = document.getElementsByTagName("img"),
+            aLi = document.getElementsByTagName("li"),
+            len = aImg.length,
+            time = new Date(),
+            index = 0;
+        // 点击下一张事件
+        aP[1].onclick = function(){ 
+            if(new Date() - time > 650){
+                Move(aImg[index],{
+                    opacity :0,
+                    "z-index" :0
+                },600,"linear")
+                aLi[index].classList.remove("on");
+                index++;
+                if(index ==len) index = 0;
+                
+
+                Move(aImg[index],{
+                    opacity :1,
+                    "z-index" :1
+                },600,"linear")
+                aLi[index].classList.add("on");
+            } 
+            time = new Date();
+        }
+        // 点击上一张事件
+        aP[0].onclick = function(){
+            if(new Date() - time > 650){    
+                Move(aImg[index],{
+                opacity :0,
+                "z-index" :0
+                },600,"linear")
+                aLi[index].classList.remove("on");
+                index--;
+                if(index == -1) index = len - 1;
+                Move(aImg[index],{
+                    opacity :1,
+                    "z-index" :0
+                },600,"linear")
+                aLi[index].classList.add("on");
+            }
+            time = new Date();
+        }
+        //分页器点击事件
+        for(var i=0; i<len; i++){
+            (function(i){
+                aLi[i].onclick = function(){
+                    Move(aImg[index],{
+                        opacity :0,
+                        "z-index":1
+                    },600,"linear")
+                    
+                    aLi[index].classList.remove("on");
+                    index = i;
+                    Move(aImg[index],{
+                        opacity :1,
+                        "z-index":0
+                    },600,"linear")
+                    aLi[index].classList.add("on");
+                }
+            })(i)
+        }
+        //自动切换事件
+        function change(){
+            Move(aImg[index],{
+                    opacity :0,
+                    "z-index" :0
+                },600,"linear")
+                aLi[index].classList.remove("on");
+                index++;
+                if(index ==len){
+                    index = 0;
+                }
+                Move(aImg[index],{
+                    opacity :1,
+                    "z-index" :1
+                },600,"linear")
+                aLi[index].classList.add("on");
+            }
+      timer=  setInterval("change()",2000)
+        oBanner.onmouseenter = function(){
+            clearInterval(timer);
+            console.log("我进去了")
+        }
+        oBanner.onmouseleave = function(){
+           timer = setInterval(change,1000);
+
+        }
+    </script>
+</body>
+</html>

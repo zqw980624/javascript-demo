@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap{
+            width: 600px;
+            margin:50px auto;
+            border:2px solid black;
+        }
+        #wrap div.top{
+            width: 450px;
+            margin:20px auto;
+        }
+        #wrap div.bottom{
+            width:100%;
+        }
+        #wrap div.bottom p{
+            padding:10px;
+            text-indent: 2em;
+        }
+        #wrap div.bottom p span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="top">
+            <input type="text" placeholder="查找内容">
+            <input type="button" value="查找">
+            <input type="text" placeholder="替换内容">
+            <input type="button" value="替换">
+        </div>
+        <div class="bottom">
+            <p>
+                张家界为中国湖南省的省辖地级市，位于湖南西北部，澧水中上游，属武陵山脉腹地，为中国最重要的旅游城市之一。1982年9月，张家界成为中国第一个国家森林公园，1988年8月，武陵源被列入国家第二批40处重点风景名胜区之内；1992年，由张家界国家森林公园、索溪峪风景区、天子山风景区三大景区构成的武陵源自然风景区被联合国教科文组织列入《世界自然遗产名录》。 张家界市位于湖南省西北部，北与湖北省鹤峰县交界。总面积9518平方千米。总人口163万人（2006年），以土家族、白族为主的少数民族约占总人口的三分之二。全市辖2个市辖区、2个县。市人民政府驻永定区。张家界为中国湖南省的省辖地级市，位于湖南西北部，澧水中上游，属武陵山脉腹地。为中国最重要的旅游城市之一。1982年9月，张家界成为中国第一个国家森林公园，1988年8月，武陵源被列入国家第二批40处重点风景名胜区之内；1992年，由张家界国家森林公园、索溪峪风景区、天子山风景区三大景区构成的武陵源自然风景区被联合国教科文组织列入《世界自然遗产名录》。  地处武陵山脉东段，境内多山，地势由西北向东南倾斜，桑植县境西北的斗蓬山海拔1890米为市境最高处。主要河流有澧水、溇水。属北亚热带季风性湿润气候，年均气温17℃，1月平均气温5.1℃，7月平均气温28℃，年降水量1400毫米。枝柳铁路纵贯境内，干线公路纵横过境，有张家界机场。旅游景点有：武陵源风景名胜区（国家重点风景名胜区，1992年被联合国教科文组织列入《世界自然遗产名录》），桑植县九天洞、八大公山，永定区茅岩河漂流、天门山，慈利县五雷山，永定区玉皇洞石窟、普光禅寺等。有张家界国家森林公园、索溪峪自然保护区、天子山自然保护区、八大公山自然保护区、天门山国家森林公园等。纪念地有红二方面军长征出发地、贺龙故居、中华苏维埃共和国湘鄂川黔省革命委员会、省军区旧址等。美国好莱坞曾到张家界来拍照取景，这些照片被卡梅隆导演看上，用在了电影《阿凡达》上了。
+            </p>
+        </div>
+    </div>
+    <script>
+        (function(){
+            var aInput = document.getElementsByTagName("input");
+            var oP = document.getElementsByTagName("p")[0];
+            var strP = oP.innerHTML;
+            aInput[1].onclick = function(){
+                var str1 = aInput[0].value.trim();
+                var arr = strP.split(str1);
+                oP.innerHTML = arr.join("<span>"+str1+"</span>") ;   
+            }
+            aInput[3].onclick = function(){
+            var str1 = aInput[0].value.trim();
+            var str2 = aInput[2].value.trim();
+            var arr = strP.split(str1);
+            oP.innerHTML = arr.join("<span>"+str2+"</span>") ;
+            }
+        })()
+    </script>
+</body>
+</html>

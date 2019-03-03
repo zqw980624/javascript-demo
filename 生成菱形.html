@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{margin: 0;padding: 0;}
+        body{
+            background-color: black; 
+        }
+        #wrap{
+            margin: 50px auto;
+            font-size: 0;
+            text-align: center;
+            transition-duration: 1s;
+        }
+        @keyframes go{
+            from{transform: rotate(0)}
+            to{transform: rotate(360deg)}
+        }
+        #wrap:hover{
+            animation: go 1s linear infinite;
+        }
+        span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input type="submit" value="生成多少行">
+    <div id="wrap"></div>
+    
+    <script>
+        var aInput = document.getElementsByTagName("input"),
+            oWrap = document.getElementById("wrap"),
+            str="";
+            
+        aInput[1].onclick = function(){
+            number = aInput[0].value;
+            var middle=Math.ceil(number/2);
+            for(var i=1;i<=middle;i++){
+                
+                for(var j=1;j<=i;j++){
+                    var r = parseInt(Math.random()*256);
+                    var g = parseInt(Math.random()*256);
+                    var b = parseInt(Math.random()*256);
+                    var oSpan = "<span style="+"'background-color:rgb("+r+","+g+","+b+");box-shadow:0"+" 0"+" 20px"+ " red;'></span>";   
+                    var oSpan1 = "<span style="+"background-color:transparent;>"+"</span>";
+                    if(j==1){
+                        str +=oSpan;
+                    }else if(j==i){
+                        str +=oSpan1+ oSpan;
+                    }else{
+                        str +=oSpan1+oSpan1;
+                    }
+                }
+                str += "<br/>"
+            }
+            for(var i= number;i>=middle;i--){
+                
+                for(var j=middle;j<i;j++){
+                    var r = parseInt(Math.random()*256);
+                    var g = parseInt(Math.random()*256);
+                    var b = parseInt(Math.random()*256);
+                    var oSpan = "<span style="+"'background-color:rgb("+r+","+g+","+b+");box-shadow:0"+" 0"+" 10px"+ " white;'></span>";   
+                    var oSpan1 = "<span style="+"background-color:transparent;>"+"</span>";
+                    if(j==middle){
+                        str +=oSpan;
+                    }else if(j==i-1){
+                        str +=oSpan1+ oSpan;
+                    }else{
+                        str +=oSpan1+oSpan1;
+                    }
+                    
+                }
+                str += "<br/>"
+            }
+            oWrap.innerHTML = str;
+            
+        }
+    </script>
+</body>
+</html>

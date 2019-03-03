@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin: 0;padding: 0;}
+        li{list-style: none;}
+        li{
+            width: 40px;
+            height: 40px;
+            background-color: blueviolet;
+            color:red;
+            font-size: 24px;
+            text-align: center;
+            line-height: 40px;
+            border:2px solid red;
+            
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input type="button" value="生成小盒子">
+    <ul></ul>
+    <script>
+        var aIput = document.getElementsByTagName("input"),
+            oUl = document.getElementsByTagName("ul")[0];
+            
+        aIput[1].onclick = function(){
+            var oText = aIput[0].value,
+                middle =Math.ceil(oText/2),
+                str="";
+            for(var i=0; i<oText; i++){
+                if(i<middle){
+                    str += "<li style="+"margin-left:"+40*i+"px>"+(i+1)+"</li>";
+                }else{
+                    str += "<li style="+"margin-left:"+(40*(oText-i-1))+"px>"+(i+1)+"</li>";
+                }
+            }
+           oUl.innerHTML = str;
+           aIput[0].value = "";
+           console.log(oText);
+        }
+    </script>
+</body>
+</html>

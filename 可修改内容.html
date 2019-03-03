@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin:0;padding: 0;}
+        li{list-style: none;}
+        #wrap{
+            width: 500px;
+            margin:50px auto 0;
+            border: 2px solid black;
+        }
+        #wrap li{
+            width: 500px;
+            
+            border-bottom: 1px solid red; 
+        }
+        #wrap p{
+            display: inline-block;
+            width: 400px;
+            text-indent: 2em;
+            outline: 0;
+           
+        }
+        #wrap input.active{
+            background-color: black;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li>
+                <p>内容</p>
+                <input type="button" value="修改">
+            </li>
+            <li>
+                <p>内容</p>
+                <input type="button" value="修改">
+            </li>
+            <li>
+                <p>内容</p>
+                <input type="button" value="修改">
+            </li>
+            <li>
+                <p>内容</p>
+                <input type="button" value="修改">
+            </li>
+        </ul>
+    </div>
+    <script>
+        var aButton = document.getElementsByTagName("input"),
+            len = aButton.length,
+            aP = document.getElementsByTagName("p");
+        for(var i=0; i<len; i++){
+            aButton[i].bloo = true;
+            (function(i){
+                aButton[i].onclick = function(){
+                    if(this.bloo){
+                        this.className = "active";
+                        this.value = "确定";
+                        aP[i].setAttribute("contenteditable","true");
+                    }else{
+                        this.className = "";
+                        this.value = "修改";
+                        aP[i].removeAttribute("contenteditable")
+                    }
+                    this.bloo = !this.bloo;
+                }
+            })(i)
+            
+        }
+    </script>
+</body>
+</html>

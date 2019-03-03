@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin:0;padding: 0;}
+        li{list-style: none;}
+        #wrap{
+            padding: 20px;
+            width: 960px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+        li{
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            margin:10px;
+            
+            border:1px solid red;
+        }
+        li img{
+            width: 200px;
+            height: 160px; 
+        }
+        li p{
+            display: inline-block;
+            font-size: 12px;
+        }
+        li span{
+            color: red;
+        }
+        #wrap div{
+           margin-left:700px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li>
+                <img src="image/购物车排序图片/1.png" alt="">
+                <p>甜美七分袖荷叶边条纹设￥</p><span>10</span> 
+            </li>
+            <li>
+                <img src="image/购物车排序图片/2.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>60</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/3.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>50</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/4.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>30</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/5.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>80</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/6.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>70</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/7.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥</p><span>40</span>
+            </li>
+            <li>
+                <img src="image/购物车排序图片/8.png " alt="">
+                <p>甜美七分袖荷叶边条纹设￥ </p><span>20</span>
+            </li>
+        </ul>
+        <div>
+            <input type="button" value="随机">
+            <input type="button" value="从低到高">
+            <input type="button" value="从高到低">
+        </div>
+    </div>
+    <script>
+        var aLi = document.getElementsByTagName("li"),
+            len =aLi.length,
+            oUl = document.getElementsByTagName("ul"),
+            aP = document.getElementsByTagName("p"),
+            aImg = document.getElementsByTagName("img"),
+            aSpan = document.getElementsByTagName("span"),
+            aInput =document.getElementsByTagName("input"),
+            len2 = aInput.length;
+            arr = [];
+            for(var i = 0;i<len;i++){
+                arr[i] = {
+                    src: aImg[i].src,
+                    p : aP[i].innerHTML,
+                    span: aSpan[i].innerHTML
+                }
+            }
+            function j(){
+                for(var j =0;j<len;j++){
+                    aImg[j].src=arr[j].src;
+                    aP[j.innerHTML]=arr[i].p;
+                    aSpan[j].innerHTML=arr[j].span
+                }
+            }
+            for(var i=0;i<len2;i++){
+                (function(i){
+                    aInput[i].onclick = function(){
+                        if(i==0){
+                            arr.sort(function(a,b){
+                            return Math.random()-0.5;
+                        })
+                        }
+                        if(i==1){
+                            arr.sort(function(a,b){
+                            return a.span-b.span;   
+                        })
+                        }
+                        if(i==2){
+                            arr.sort(function(a,b){
+                            return b.span-a.span;   
+                        })
+                        }
+                        j();
+                        console.log(i);
+                    }
+                })(i)
+                
+            }
+            
+    </script>
+</body>
+</html>

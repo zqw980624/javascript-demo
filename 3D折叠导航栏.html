@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body,p,h3{margin:0;padding:0;}
+			body{
+				background-color: blueviolet;
+			}
+			#wrap{
+				width:300px;
+				height:600px;
+				margin:50px auto 0;
+			}
+			h3{
+				color: cyan;
+			}
+			.n-title{
+				width:300px;
+				height:60px;
+				text-align:center;
+				background-color:#069;
+				color:white;
+				line-height: 60px;
+				border-radius: 20px 20px 0 0;
+			}
+			.nav{
+				position: relative;
+				perspective: 800px;
+				transition: 2s;
+			}
+			.nav div{
+				float: left;
+			}
+			img{
+				float: left;
+				width: 80px;
+				height: 80px;
+				margin: 10px;
+				
+			}
+			.nav1,
+			.nav3,
+			.nav5
+			{
+				background-color: gray;
+				
+				
+			}
+			.nav2,
+			.nav4
+			{
+				background-color: white;
+			}
+		    .nav1{ 
+				/* transform: rotateX(-90deg);  */
+				z-index: -1;
+				transition-duration: 2s;
+				
+				
+			}
+			.nav:hover .nav1{
+				
+				transform: rotateX(-90deg); 
+			}
+			.nav:hover .nav2,.nav:hover .nav4{
+				
+				transform: rotateX(180deg);
+			}
+			.nav:hover .nav3,.nav:hover .nav5{
+				transform: rotateX(-180deg);
+			
+			}
+			
+			
+			.nav-n{
+				position:absolute;
+				left:0;
+				top:100%;
+				z-index: -1;
+				transform-origin:top;
+				transform-style: preserve-3d;
+				transition-duration: 2s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div>
+				<div class="nav">
+					<p class="n-title">3D折叠导航栏</p>
+					<div class="nav1 nav-n">
+						<img src="html.png">
+						<h3>网站特效库</h3>
+						<p>专注于HTML5，CSS3，JS，JQuery，手机等网页特效的手机与分享</p>
+						<div class="nav2 nav-n">
+							<img src="html1.png">
+							<h3>网站特效库</h3>
+							<p>专注于HTML5，CSS3，JS，JQuery，手机等网页特效的手机与分享</p>
+							<div class="nav3 nav-n">
+								<img src="html2.png">
+								<h3>网站特效库</h3>
+								<p>专注于HTML5，CSS3，JS，JQuery，手机等网页特效的手机与分享</p>
+								<div class="nav4 nav-n">
+									<img src="html3.png">
+									<h3>网站特效库</h3>
+									<p>专注于HTML5，CSS3，JS，JQuery，手机等网页特效的手机与分享</p>
+									<div class="nav5 nav-n">
+										<img src="html4.png">
+										<h3>网站特效库</h3>
+										<p>专注于HTML5，CSS3，JS，JQuery，手机等网页特效的手机与分享</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+					

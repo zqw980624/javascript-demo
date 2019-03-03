@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{margin: 0;padding: 0;}
+        #wrap{
+            width: 40px;
+            height: 40px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <script>
+        var oWrap = document.getElementById("wrap");
+       
+        window.requestAnimationFrame = window.requestAnimationFrame || function (fn){
+            return setTimeout(fn,1000/60);
+        }
+        window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout();
+        function Move(obj,attr,target,step){
+            var getStyle = getComputedStyle(obj) || obj.currentStyle;
+            var startvalue =parseFloat( getStyle[attr]);
+            var  isDirecortion = target> startvalue;
+            if(!isDirecortion) step = -step;
+            (function running(){
+                startvalue += step;
+                if((isDirecortion)?target<startvalue:target>startvalue){
+                    startvalue = target;
+                }else{
+                    requestAnimationFrame(running);
+                }
+               
+                obj.style[attr] = startvalue +"px";
+            })();
+            
+           
+        }
+        Move(wrap,"width",400,9);
+    </script>
+</body>
+</html>

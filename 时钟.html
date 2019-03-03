@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin: 0;padding: 0;}
+        li{list-style: none;}
+        li{
+            display: inline-block;
+            width: 40px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li class="clock"></li>
+            <li class="clock"></li>
+            <li class="maohao">
+                <img src="image/时钟图片/d.png" alt="">
+            </li>
+            <li class="clock"> </li>
+            <li class="clock"></li>
+            <li  class="maohao">
+                <img src="image/时钟图片/d.png" alt="">
+            </li>
+            <li class="clock"></li>
+            <li class="clock"></li>
+        </ul>
+    </div>
+    <script src="move.js"></script>
+    <script>
+        function addZero(n){
+            return n=n<10?"0"+n:n+"";
+        }
+        function getTime(){
+            var date = new Date();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var aClock = document.getElementsByClassName("clock");
+            var str =addZero(hour)+addZero(minutes)+addZero(seconds);
+            var arr = str.split("");
+            var len = arr.length;
+            for(var i=0;i<len;i++){
+                aClock[i].style.backgroundImage = "url(image/时钟图片/"+arr[i]+".png)"
+            }
+        }
+        getTime();
+        setInterval(getTime,1000)
+    </script>
+</body>
+</html>

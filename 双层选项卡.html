@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin:0;padding: 0;}
+        li{list-style: none;}
+        #wrap{
+            width: 300px;
+           
+            margin:50px auto;
+            border: 5px solid yellow;
+           
+        }
+        #wrap > ul li{
+            width: 300px;
+           
+            background-color: pink;
+            color:white;
+            font-size: 24px;
+            font-weight: blod;
+            line-height: 40px;
+            text-indent: 20px;
+            border-bottom: 2px solid red;
+        }
+        #wrap ul ul{
+            display: none;
+        }
+        #wrap ul li li{
+            
+            background-color: black;
+            color:purple;
+        }
+        #wrap ul ul.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li>老师
+                <ul>
+                    <li>老师01</li>
+                    <li>老师02</li>
+                    <li>老师03</li>
+                    <li>老师04</li>
+                    <li>老师05</li>
+                    <li>老师06</li>
+                    <li>老师07</li>
+                    <li>老师08</li>        
+                </ul>
+            </li>
+            <li>学生
+                <ul>
+                    <li>学生01</li>
+                    <li>学生02</li>
+                    <li>学生03</li>
+                    <li>学生04</li>
+                    <li>学生05</li>
+                    <li>学生06</li>
+                    <li>学生07</li>
+                    <li>学生08</li>
+                </ul>
+            </li>
+            <li>包工头
+                <ul>
+                    <li>包工头01</li>
+                    <li>包工头02</li>
+                    <li>包工头03</li>
+                    <li>包工头04</li>
+                    <li>包工头05</li>
+                    <li>包工头06</li>
+                    <li>包工头07</li>
+                    <li>包工头08</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var aLi = document.querySelectorAll("#wrap > ul > li"),
+            aUl = document.querySelectorAll("#wrap ul ul"),
+            len = aLi.length;
+        for(var i=0;i<len;i++){
+            aLi[i].bloo = true;
+            (function(i){
+                aLi[i].onclick = function(){
+                    if(aLi[i].bloo){
+                        aUl[i].className = "show";
+                    }
+                    else{
+                        aUl[i].className = "";
+                    }
+                    this.bloo = !this.bloo;
+                }
+            })(i)
+        }
+    </script>
+</body>
+</html>

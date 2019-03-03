@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,p,ul,li{margin: 0;padding: 0;}
+        li{list-style: none;}
+       
+        #wrap{
+            width: 400px;
+            height: 300px;
+            margin:auto;
+          
+        }
+        #wrap p{
+            padding: 10px;
+            color:red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        li{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            background: url("image/星级评分图片/star.png") no-repeat 0 0/40px 80px;
+        }
+        li.on{
+            background-position-y: -47px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <p>对该产品打打分吧</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var aUl = document.getElementsByTagName("ul")[0];
+            aLi = document.getElementsByTagName("li"),
+            len = aLi.length,
+            score = 0;
+        function xunhuan(num){
+            for(var j=0;j<len;j++){
+                aLi[j].className=(j<=num)?"on":"";
+            }
+        }
+        for(var i =0; i<len; i++){
+            (function(i){
+                aLi[i].onmouseenter = function(){
+                   xunhuan(i);
+                }
+                aUl.onmouseleave = function(){
+                    xunhuan(score);
+                }
+                aLi[i].onclick = function(){
+                    score = i;
+                }  
+            }(i))
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{margin: 0; padding: 0;}
+        #wrap{
+            width: 400px;
+            height: 40px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <script>
+        Move(wrap,"width",50,5000);
+        
+        function Move(obj,attr,target,time){
+            var getStyle = getComputedStyle(obj) || obj.currentStyle;
+            startValue = parseFloat(getStyle[attr]);
+            var time1 = new Date();
+            var s = target - startValue;
+            
+            (function running(){
+               var time2 = new Date();
+                if(time2-time1<time){
+                    var nowS = (time2 - time1)/time*s;
+                    requestAnimationFrame(running);
+                }else{
+                    nowS = target - startValue;
+                }
+                obj.style[attr]= nowS + startValue + "px";
+
+               console.log(obj.style[attr]);
+            })();
+            
+            
+        }
+    </script>
+</body>
+</html>

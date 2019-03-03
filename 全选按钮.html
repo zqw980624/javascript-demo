@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin:0;padding: 0}
+        body{background-color: skyblue;}
+        li{list-style: none}
+        #wrap{
+            width: 300px;
+            margin: 50px auto 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        li{
+            height: 60px;
+            background: url(image/全选图片/2.png) no-repeat 15px /30px 30px;
+            padding-left: 50px;
+            border-bottom: 2px solid #ccc;
+            line-height: 60px;
+        }
+        li.bgI{
+            background-image: url(image/全选图片/1.png);
+        }
+        div.all{
+            width: 300px;
+            height: 80px;
+            padding-left: 50px;
+            background: url(image/全选图片/2.png) no-repeat 15px /30px 30px; 
+            line-height: 80px;
+        }
+        div.bgI{
+            background-image: url(image/全选图片/1.png);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li>按钮001</li>
+            <li>按钮002</li>
+            <li>按钮003</li>
+            <li>按钮004</li>
+            <li>按钮005</li>
+            <li>按钮006</li>
+        </ul>
+        <div class="all">全选</div>
+    </div>
+    <script>
+        var oUl = document.getElementsByTagName("ul")[0],
+            aLi = oUl.getElementsByTagName("li"),
+            oAll = document.getElementsByClassName("all")[0];
+            oAll.bloo = true;
+            len = aLi.length,
+            count = 0;
+        for(var i=0; i<len; i++){
+            aLi[i].bloo = true;
+            aLi[i].onclick = function(){
+                if(this.bloo){
+                    this.className = "bgI";
+                    count++; 
+                }else{
+                    this.className = "";
+                    count--;
+                }
+                this.bloo = !this.bloo;
+                if(count===6){
+                    oAll.className += " bgI";
+                    oAll.bloo = false;
+                }else{
+                    oAll.className = "all"; 
+                    oAll.bloo = true;
+                }
+            }         
+        }
+        oAll.onclick = function(){
+            if(this.bloo){
+                this.className += " bgI";
+                for(var i=0; i<len; i++){
+                    aLi[i].className ="bgI";
+                    aLi[i].bloo = false;
+                    count = 6;
+                }
+            }else{
+                this.className = "all";
+                for(var i=0; i<len; i++){
+                    aLi[i].className ="";
+                    aLi[i].bloo =　true;  
+                    count = 0;
+                }  
+            }
+            this.bloo = !this.bloo;
+        }
+    </script>
+</body>
+</html>

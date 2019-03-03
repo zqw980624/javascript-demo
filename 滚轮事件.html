@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body style='height:2000px'>
+    <div id='a' style='height: 2000px; width: 100px;background-color: red'></div>
+    <script>
+        var a = document.getElementById('a');
+
+
+
+        function mousewheel(obj, cb, bloo) {
+            var type = 'mousewheel';
+            if (document.onmousewheel === null) {
+                console.log('费火狐')
+            } else {
+                type = 'DOMMouseScroll'
+                console.log('火狐')
+            }
+            if (document.addEventListener) {
+                obj.addEventListener(type, eFn)
+            } else {
+                obj.attachEvent('on' + type, eFn)
+            }
+
+            function eFn(e) {
+                var e = e || window.event;
+                e.direction = e.detail / 3 || -e.wheelDelta / 150;
+                // console.log(direction)
+                if (!!bloo) {
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    } else {
+                        return returnValue = false;
+                    }
+                }
+                cb.call(this, e);
+
+
+            }
+
+
+
+        }
+        mousewheel(a, function(e) {
+            if (e.direction > 0) {
+                console.log('向下滚')
+            } else {
+                console.log('向上滚')
+            }
+        }, true);
+    </script>
+</body>
+
+</html>

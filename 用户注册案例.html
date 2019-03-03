@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>43js</title>
+<style>
+	*{margin: 0;padding: 0;}
+	li{list-style: none;}
+	i,em{font-style: none;}
+	.clearfix:after{
+		display: block;
+		clear: both;
+		content: "";
+	}
+	#wrap{
+		width: 300px;
+		padding: 30px;
+		margin: 50px auto;
+		border: 1px solid #ccc;
+	}
+	#wrap h1{
+		padding-bottom: 20px;
+		font-size: 20px;
+		text-align: center;
+	}
+	#wrap li{
+		position: relative;
+		padding: 10px 0;
+	}
+	#wrap li input{
+		float: right;
+		width: 100%;
+		height: 34px;
+		padding-left: 20px;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+	}
+	#wrap li p{
+		display: none;
+		position: absolute;
+		top:50%;
+		left: 110%;
+		width: 150px;
+		height: 30px;
+		margin-top: -15px;
+		line-height: 40px;
+		background-color: #0ff;
+		color:#fff;
+	}
+	#wrap #btn{
+		display: block;
+		width: 100%;
+		height: 40px;
+		margin: 0 auto;
+		border: 0;
+		outline: 0;
+		background-color: #3cf;
+		font-size: 16px;
+		color: #fff;
+		border-radius:4px;
+        cursor: pointer;
+	}
+	.prompt{
+		position: absolute;
+		padding: 6px;
+		background-color: #0ff;
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<h1>用户注册</h1>
+		<ul>
+			<li class="clearfix"><input type="text" name="username" id="user" placeholder="请输入8位数字id"><p></p></li>
+			<li class="clearfix"><input type="text" name="userpwd" id="pwd" placeholder="请输入6-12位字母数字下划线的密码"><p></p></li>
+			<li class="clearfix"><input type="password"id="pwd2" placeholder="再次输入密码"><p></p></li>
+			<li class="clearfix"><input type="text" id="email" name="email" placeholder="请输入邮箱"><p></p></li>
+			<li class="clearfix"><input type="text" id="tel" name="tel" placeholder="请输入手机号"><p></p></li>
+		</ul>
+		<button id="btn">注册</button>
+	</div>
+    <script>
+        let userReg =/^[0-9]{8}$/,
+            pwdReg =/^\w{6,12}$/,
+            emailReg = /^\d{5,11}[@][q][q]\.[c][o][m]$/,
+            telReg = /^1[3-9][0-9]{9}$/;
+        
+        btn.onclick = function(){
+           isMatch(userReg,user);
+           isMatch(pwdReg,pwd);
+           isMatch(emailReg,email);
+           isMatch(telReg,tel);
+           if(pwd.value !== pwd2.value){
+               alert("两次密码不一致");
+           }
+        }
+        function isMatch(strReg,obj){
+            let bloo = strReg.test(obj.value);
+            if(!bloo){
+                obj.nextSibling.style.display = "block";
+                obj.nextSibling.innerHTML ="输入格式错误"
+            }
+        
+            return bloo;
+        }
+    </script>
+</body>
+</html>

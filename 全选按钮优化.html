@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li,p{margin: 0;padding: 0;}
+        li{list-style: none;}
+        #wrap{
+            width: 600px;
+            margin:50px auto;
+            border: 2px solid red;
+            background-color: pink;
+        }
+        #wrap > p{
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+        li{
+            display: inline-block;
+            margin: 10px;
+           
+        }
+        li img{
+            width: 30px;
+            height: 30px;
+            
+            vertical-align: middle;  
+        }
+        
+        li p{
+            display: inline-block;
+            vertical-align: middle;
+            color:red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id = "wrap">
+        <p>让你一看就觉得恶心的是哪种人?</p>
+        <ul>
+            <li>
+                <img src="image/全选图片/2.png" alt="" >
+                <p>傻子</p>
+            </li>
+            <li>
+                <img src="image/全选图片/2.png" alt="">
+                <p>疯子</p>
+            </li>
+            <li>
+                <img src="image/全选图片/2.png" alt="">
+                <p>地痞</p>
+            </li>
+            <li>                
+                <img src="image/全选图片/2.png" alt="">
+                <p>垃圾</p>
+            </li>
+            <li>         
+                <img src="image/全选图片/2.png" alt="">
+                <p>渣渣</p>
+            </li>
+            <li>                
+                <img src="image/全选图片/2.png" alt="">
+                <p>菜鸡</p>
+            </li>
+            <li>                
+                <img src="image/全选图片/2.png" alt="">
+                <p>流氓</p>
+            </li>
+            <li>   
+                <img src="image/全选图片/2.png" alt="">
+                <p>全选(全去死吧)</p>
+            </li>                     
+        </ul>
+        <script>
+            var aLi = document.getElementsByTagName("li"),
+                aImg = document.getElementsByTagName("img"),
+                len = aLi.length,
+                oP = document.getElementsByTagName("p")[8],
+                arr=[],
+                arrImgSrc = ["image/全选图片/1.png","image/全选图片/2.png"],
+                arrP = ["全选(全去死吧)","全不选(人善被人欺)"];
+            for(var i=0;i<len;i++){
+                (function(i){
+                    aLi[i].bloo = true;
+                    aLi[i].onclick = function(){
+                        if(aLi[i].bloo){
+                            
+                            arr.push(this.bloo);
+                            aImg[i].src = arrImgSrc[0];
+                        }else{
+                            aImg[i].src = arrImgSrc[1];
+                            arr.pop();
+                        }
+                        if(arr.length==7){
+                            oP.innerHTML = arrP[1];
+                            aImg[7].src = arrImgSrc[0];
+                        }else{
+                            oP.innerHTML = arrP[0];
+                            aImg[7].src = arrImgSrc[1];
+                        }
+                        this.bloo = !this.bloo;
+                    }
+                    aLi[7].onclick = function(){
+                        if(oP.innerHTML =="全选(全去死吧)"){
+                            oP.innerHTML = arrP[1];
+                            for(var i=0;i<len;i++){
+                                aImg[i].src = arrImgSrc[0];
+                                aLi[i].bloo = false;   
+                            }
+                           arr=[true,true,true,true,true,true,true];
+                           
+                        }else{
+                            oP.innerHTML = arrP[0];
+                           for(var i=0;i<len;i++){
+                               aImg[i].src = arrImgSrc[1];
+                               aLi[i].bloo = true; 
+                           } 
+                           arr=[];
+                        }
+                    }      
+                })(i)
+            }  
+        </script>
+    </div>
+</body>
+</html>

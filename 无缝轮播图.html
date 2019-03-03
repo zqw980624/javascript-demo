@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li,p{margin:0;padding: 0;}
+        li{list-style: none;}
+        #banner{
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            border: 2px solid red;
+            overflow: hidden;
+        }
+        #banner .pic{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 700%;
+            height: 400px;
+            font-size: 0;
+        }
+        #banner img{
+            display: inline-block;
+            width: 600px;
+            height: 400px;
+        }
+        #banner ul{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+           
+           
+        }
+        #banner ul li{
+            display: inline-block;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px purple;
+            transition-duration: 0.6s;
+        }
+        #banner ul .on{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+        }
+        #banner p{
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 30px;
+            background-color: black;
+            color: purple;
+            font-size: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+        #banner p:nth-of-type(1){
+            left:0;
+        }
+        #banner p:nth-of-type(2){
+            right:0 ;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <div class = "pic">
+            <img src="image/无缝轮播图片/QQ1.png" alt="">
+            <img src="image/无缝轮播图片/QQ2.jpg" alt="">
+            <img src="image/无缝轮播图片/QQ3.jpg" alt="">
+            <img src="image/无缝轮播图片/QQ4.jpg" alt="">
+            <img src="image/无缝轮播图片/QQ5.jpg" alt="">
+            <img src="image/无缝轮播图片/QQ6.jpg" alt="">
+            <img src="image/无缝轮播图片/QQ1.png" alt="">
+        </div>
+        
+        <ul>
+            <li>
+                <div class="on"></div>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p><</p>
+        <p>></p>
+    </div>
+    <script src="move.js"></script>
+    <script>
+       var aP = document.getElementsByTagName("p"),
+           oDiv = document.getElementsByClassName("pic")[0],
+           oLi = document.getElementsByClassName("on")[0],
+           index = 0,
+           index1 = 0,
+           time = new Date();
+       aP[1].onclick = function(){
+            if(new Date() - time > 650){
+                    index++;
+                    index1++;
+                Move(oDiv,{
+                    left: -600 * index
+                },600,"linear",function(){
+                    if(index == 6){
+                        this.style.left = 0;
+                        index = 0;
+                        Move(oLi,{
+                            opacity:0
+                        },325,"linear")
+                        Move(oLi,{
+                            opacity:1
+                        },325,"linear")
+                    }
+                })
+                Move(oLi,{
+                    left: 35 * index1
+                },600,"linear",function(){
+                    if(index1 == 6){
+                        index1 = 0;
+                        this.style.opacity = 0;
+                        this.style.left=0;
+                    }
+                })
+            }
+        }
+        aP[0].onclick = function(){
+            if(new Date() - time > 650){
+                    index--;
+                    index1--;
+                    if(index == -1){
+                        
+                        oDiv.style.left = "-2400px";
+                        index = 5;
+                    }
+                Move(oDiv,{
+                    left: -600 * index
+                },600,"linear")
+
+                Move(oLi,{
+                    left: 35 * index1
+                },600,"linear",function(){
+                    if(index1 == -1){
+                        this.style.left="175px";
+                        index1 = 5;
+
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+</html>

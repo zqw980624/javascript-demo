@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin: 0;padding: 0;} 
+        li{list-style:none}
+        ul{position: relative}
+        li{
+            position: absolute;
+            
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            
+        </ul>
+    </div>
+    <script>
+        (function(){
+            let oUl = document.getElementsByTagName("ul")[0];       
+                winWidth = document.documentElement.clientWidth,
+                winHeight = document.documentElement.clientHeight;
+            document.onclick = function(){
+                // 创建球
+                createBall({
+                    // 球的直径
+                    diamater :Math.floor( Math.random() * 50 + 50),
+                    x : 0,
+                    y : 0,
+                    speedX : Math.floor( Math.random() * 5 + 5),
+                    speedY : Math.floor( Math.random() * 5 + 5),
+                    // speedX : 1,
+                    // speedY : 1
+                })
+            }
+            function createBall(data){
+                
+                let li = document.createElement("li");
+                li.style.width = data.diamater + "px";
+                li.style.height = data.diamater + "px";
+                li.style.top = data.x + "px";
+                li.style.left = data.y + "px";
+                li.style.backgroundColor = randomRgb();
+                oUl.appendChild(li);
+               
+                function run(){
+                    let  maxX = winWidth - data.diamater;
+                        maxY = winHeight - data.diamater;
+                        console.log(data.x,maxX);
+                        data.x += data.speedX;
+                        data.y += data.speedY;
+                    if(data.x<0 || data.x>maxX){
+                        data.x = (data.x>0?Math.min(data.x,maxX):Math.max(0,data.x));   
+                        data.speedX = -data.speedX;    
+                    }
+                    if(data.y<=0 || data.y>=maxY){
+                        data.y = (data.y>0?Math.min(data.y,maxY):Math.max(0,data.y));
+                       data.speedY =  -data.speedY;
+                    }
+                    li.style.top = data.y + "px";
+                    li.style.left = data.x + "px";
+                    requestAnimationFrame(run);
+                }
+                run();
+            }
+            function randomRgb(){
+                let r = Math.floor( Math.random() * 256),
+                    g = Math.floor( Math.random() * 256),
+                    b = Math.floor( Math.random() * 256);
+                return `rgb(${r},${g},${b})`
+            }
+            
+        })()
+    </script>
+</body>
+</html>

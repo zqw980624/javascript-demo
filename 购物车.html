@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li,p{margin:0;padding:0;}
+        li{list-style: none}
+        #wrap{
+            width: 600px;
+            height: 600px;
+            margin:50px auto;
+        }
+        #wrap ul{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            
+        }
+        #wrap ul + ul{
+            border-bottom: 2px solid red;
+        }
+        #wrap ul.efefef{
+            padding:20px 0;
+            background-color: #efefef;
+        }
+        #wrap ul+ul li{
+            width:200px;
+            text-align: center;   
+        }
+        #wrap ul+ul li+li{
+            line-height: 100px;
+        }
+        #wrap ul li.red{
+            color:red;
+        }
+        #wrap ul li input.num{
+            height: 20px;
+            width: 40px;
+            text-align: center;
+        }
+        #wrap p{
+            margin-left: calc(100% - 100px);
+ 
+        }
+        #wrap p span{
+            display:inline-block;
+            width: 40px;
+            text-align: right;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul class="efefef">
+            <li>商品</li>
+            <li>单价</li>
+            <li>数量</li>
+            <li>小计</li>
+        </ul>
+        <ul>
+            <li>
+                <img src="image/购物车图片/01.png" alt="">
+            </li>
+            <li class="red">8</li>
+            <li>
+                <input type="button" value="-">
+                <input readonly class="num" type="text" value="0">
+                <input type="button" value="+">
+            </li>
+            <li class="red num2">0</li>
+        </ul>
+        <ul>
+            <li>
+                <img src="image/购物车图片/02.png" alt="">
+            </li>
+            <li class="red">10</li>
+            <li>
+                <input type="button" value="-">
+                <input readonly class="num" type="text" value="0">
+                <input type="button" value="+">
+            </li>
+            <li class="red num2">0</li>
+        </ul>
+        <ul>
+            <li>
+                <img src="image/购物车图片/03.png" alt="">
+            </li>
+            <li class="red">12.5</li>
+            <li>
+                <input type="button" value="-">
+                <input readonly class="num" type="text" value="0">
+                <input type="button" value="+">
+            </li>
+            <li class="red num2">0</li>
+        </ul>
+        <ul>
+            <li>
+                <img src="image/购物车图片/04.png" alt="">
+            </li>
+            <li class="red">23</li>
+            <li>
+                <input type="button" value="-">
+                <input readonly class="num" type="text" value="0">
+                <input type="button" value="+">
+            </li>
+            <li class="red num2">0</li>
+        </ul>
+        <p>已选<span>0</span>个</p>
+        <p>共计<span>0</span>￥</p>
+    </div>
+   <script>
+       var aUl = document.querySelectorAll(" #wrap ul + ul");
+       var len = aUl.length; 
+       for(var i =0;i<len;i++){
+           (function(i){
+                var  aInput = aUl[i].getElementsByTagName("input");
+                var aRed = aUl[i].getElementsByClassName("red");
+                var aSpan = document.getElementsByTagName("span");
+                var aNum = document.getElementsByClassName("num");
+                var aNum2 = document.getElementsByClassName("num2");
+                var aRed = aUl[i].getElementsByClassName("red");
+                aInput[0].onclick = function(){
+                    aInput[1].value = parseInt( aInput[1].value)-1;
+                    if(aInput[1].value<0){
+                        aInput[1].value=0;
+                    }
+                    aRed[1].innerHTML=aInput[1].value*aRed[0].innerHTML;
+                }
+                aInput[2].onclick = function(){
+                    
+                    aInput[1].value = parseInt( aInput[1].value)+1;
+                    aRed[1].innerHTML=aInput[1].value*aRed[0].innerHTML;    
+                }
+                document.onclick=function(){
+                    var a=0;
+                    var b=0;
+                    for(var j=0;j<len;j++){
+                        a += parseFloat(aNum[j].value);
+                        aSpan[0].innerHTML=a;
+                        b +=parseFloat(aNum2[j].innerHTML);
+                        aSpan[1].innerHTML = b;
+                    }
+                }
+           })(i)
+       }
+   </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin:0;padding:0}
+        li{list-style: none}
+        #wrap{
+            width: 800px;
+            margin:50px auto;
+        }
+        #wrap > div{
+            display: none;
+            float: left;
+        }
+        #wrap div.left{
+            display: block;
+            width:100px;
+            height:600px;
+            
+        }
+        #wrap div.left li{
+            width: 100px;
+            height: 60px;
+            margin-bottom: 4px;
+            background-color:black;
+            color:white;
+            text-align: center;
+            line-height: 60px;
+
+        }
+        #wrap div.left li.active{
+            background-color: orange;
+        }
+        #wrap div.show{
+            display: block;
+            position: relative;
+            width: 500px;
+            height: 400px;
+            background-color: green;
+            
+        }
+        #wrap div.right div:nth-child(1){
+            width: 100%;
+            height: 400px;
+           
+        }
+        #wrap div.right div:nth-child(1) img{
+            display: none;
+            width: 100%;
+            height: 400px;
+        }
+        #wrap div.right div:nth-child(1) img.show{
+            display: block
+        }
+        #wrap div.right div.btn{
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            width:100%;
+            height: 40px;
+            background-color: rgba(0,0,0,0.5);   
+        }
+        #wrap div.right div.btn ul{
+            float: right;
+        }
+        #wrap div.right div.btn ul li{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: aliceblue;
+            font-size:20px;
+            text-align: center;
+            line-height: 40px;
+            
+        }
+        #wrap div.right div.btn ul li.focus{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+     <div id="wrap">
+        <div class="left">
+            <ul>
+                <li class="active">车</li>
+                <li>美食</li>
+                <li>风景</li>
+            </ul>
+        </div>
+        <div class="right show">
+            <div class="pic">
+                <img src="image/双层选项卡图片/car1.png" alt="" class="show">
+                <img src="image/双层选项卡图片/car2.png" alt="">
+                <img src="image/双层选项卡图片/car3.png" alt="">
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="focus">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="pic">
+                <img src="image/双层选项卡图片/food1.png" alt="" class="show">
+                <img src="image/双层选项卡图片/food2.png" alt="">
+                <img src="image/双层选项卡图片/food3.png" alt="">
+                <img src="image/双层选项卡图片/food4.png" alt="">
+                <img src="image/双层选项卡图片/food5.png" alt="">
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="focus">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="pic">
+                <img src="image/双层选项卡图片/view1.png" alt="" class="show">
+                <img src="image/双层选项卡图片/view2.png" alt="">
+                <img src="image/双层选项卡图片/view3.png" alt="">
+                <img src="image/双层选项卡图片/view4.png" alt="">
+                <img src="image/双层选项卡图片/view5.png" alt="">
+                <img src="image/双层选项卡图片/view6.png" alt="">
+                <img src="image/双层选项卡图片/view7.png" alt="">
+                <img src="image/双层选项卡图片/view8.png" alt="">
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="focus">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     <script>
+            var oLeft = document.getElementsByClassName("left")[0],
+                oLeft_li = oLeft.getElementsByTagName("li"),
+                len = oLeft_li.length,
+                aRight = document.getElementsByClassName("right"),
+                oShow = document.getElementsByClassName("show"),
+                oShow_li = oShow[0].getElementsByTagName("li"),
+                len2 = oShow_li.length,
+                index = 0;
+                index1 =0;
+            for(var i=0;i<len;i++){
+                (function(i){
+                    oLeft_li[i].onclick = function (){
+                        oLeft_li[index].className ="";
+                        aRight[index].className = "right";
+                        this.className = "active";
+                        aRight[i].className = "right show";
+                        index = i;
+                        swrap();
+                    }
+                })(i)
+            }
+            function swrap(){
+                var btn_li = document.querySelectorAll(".show .btn li"),
+                   len2 = btn_li.length,
+                   aImg =  document.querySelectorAll(".show img");
+                for(var j=0;j<len2;j++){
+                    (function(j){
+                        btn_li[j].onclick = function(){
+                            btn_li[index1].className = "";
+                            aImg[index1].className = "";    
+                            this.className = "focus";
+                            aImg[j].className = "show"; 
+                            index1 = j;
+                            
+                        }
+                    })(j)
+                }
+            }
+            swrap();
+     </script>
+</body>
+</html>

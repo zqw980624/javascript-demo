@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,ul,li{margin: 0;padding: 0;}
+        li{list-style: none;}
+        body{
+            background-color: #666;
+        }
+        #wrap{
+            width: 800px;
+            height: 600px;
+            margin: auto;
+            border:10px solid red;
+        }
+        #wrap > div{
+            float: left;
+            width: 400px;
+            height: 100%;
+        }
+        .left{
+            background: linear-gradient( pink,cyan);
+        }
+        .right{
+            background: linear-gradient(  cyan,pink);
+        }
+        .left .city, .right .city{
+            display: inline-block;
+            margin:8px;
+            padding:10px;
+            border:2px solid black;
+            font-weight: 900;
+        }
+        .red{
+            background-color: red;
+        }
+        span{
+            padding: 10px;
+            color: red;
+            font-weight: bold;
+        }
+        .cloneCity .city{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="left">
+            <div>
+                <ul>
+                    <li>热门城市：</li>
+                    <li class="city">江西</li>
+                    <li class="city">广州</li>
+                    <li class="city">湖南</li>
+                    <li class="city">厦门</li>
+                    <li class="city">巽寮湾</li>
+                </ul>
+            </div>
+            <div class="cloneCity">
+                <ul></ul>
+            </div>
+        </div>
+        <div class="right">
+            <ul></ul>
+        </div>
+        <script>
+            var aLi = document.getElementsByClassName("city"),
+                oDiv = document.getElementsByClassName("cloneCity")[0],
+                oRight = document.getElementsByClassName("right")[0],
+                len = aLi.length;
+                for(var i=0; i<len; i++){
+                    aLi[i].bloo = true;
+                    (function(i){
+                        aLi[i].onclick = function(){
+                            if(this.bloo){
+                                var cloneLeft = this.cloneNode(true);
+                                oDiv.children[0].appendChild(cloneLeft);
+                                var span = document.createElement("span");
+                                span.innerHTML = "X";
+                                cloneLeft.appendChild(span);
+                                var cloneRight = this.cloneNode(true);
+                                oRight.children[0].appendChild(cloneRight);
+                                this.className +=" red";
+                                this.bloo = false;
+                                span.onclick = function(){
+                                    aLi[i].className = "city";
+                                    this.parentNode.parentNode.removeChild(this.parentNode);
+                                    oRight.children[0].removeChild(cloneRight);
+                                    aLi[i].bloo = true;
+                                }
+                            }
+                            
+                            
+                        } 
+                    })(i)
+                }
+            
+        </script>
+    </div>
+</body>
+</html>
